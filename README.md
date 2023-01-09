@@ -1,4 +1,4 @@
-# SimpleChair
+# ParliPro
 
 _Parliamentary procedure made easy_
 
@@ -6,7 +6,7 @@ _Parliamentary procedure made easy_
 
 ### About
 
-SimpleChair is an interactive tool to conduct meetings using Robert's Rules of
+ParliPro is an interactive tool to conduct meetings using Robert's Rules of
 Order in realtime. It consists of a meeting runner view, a companion projector
 view, and a participant view.
 
