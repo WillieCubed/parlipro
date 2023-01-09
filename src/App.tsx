@@ -1,5 +1,4 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "./App.css";
 import ChairDashboard from "./modules/chair/ChairDashboard";
 import LandingPage from "./modules/common/LandingPage";
 import ParticipantDisplay from "./modules/participant/components/ParticipantDisplay";
