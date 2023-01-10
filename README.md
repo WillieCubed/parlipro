@@ -101,6 +101,11 @@ npm start
 After compilation, you should be able to access the website in a web browser at
 the URL provided in your terminal (usually [localhost:3000](http://localhost:3000)).
 
+#### Note for Windows users
+
+If you are using Git in Command Prompt, please use it in the Git Shell when
+committing changes. This project uses Git hooks to automatically format code on commit.
+
 ### Other Quality of-life Stuff
 
 If you use VS Code, you may want to make debugging a little easier by doing the
