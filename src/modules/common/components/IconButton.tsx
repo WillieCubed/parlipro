@@ -23,6 +23,7 @@ export default function IconButton({
         color: color,
       }}
     >
+      {icon}
       {children}
     </Link>
   );
