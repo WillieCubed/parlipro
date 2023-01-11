@@ -35,7 +35,9 @@ export default function ChairDashboard() {
     <>
       <main className="p-8">
         <section className="max-w-5xl mx-auto">
-          <IconButton>Share meeting link</IconButton>
+          <IconButton onClick={() => setIsCopyLinkDialogOpen(true)}>
+            Share meeting link
+          </IconButton>
         </section>
         <section className="max-w-5xl mx-auto">
           <h1 className="text-2xl font-bold">Minutes</h1>
