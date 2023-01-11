@@ -16,9 +16,9 @@ export default function generateMeetingLink(
     : "http://localhost:3000";
   let typePath;
   if (type === "participant") {
-    typePath = "/participant";
+    typePath = "participant";
   } else if (type === "organizer") {
-    typePath = "/chair";
+    typePath = "chair";
   }
   const meetingUrl = `${domain}/m/${meetingId}/${typePath}`;
   return meetingUrl;
