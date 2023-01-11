@@ -39,7 +39,7 @@ export default function MotionToolbar({
       const newMotion = {
         mover: "Secretary",
         content: inputContents,
-        timestamp: new Date().getMilliseconds(),
+        timestamp: Date.now(),
       };
 
       meeting.currentMotion = newMotion;

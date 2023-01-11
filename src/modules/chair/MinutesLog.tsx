@@ -7,7 +7,7 @@ interface MinutesEventProps {
 }
 
 function MinutesEvent({ content, timestamp }: MinutesEventProps) {
-  const displayTimestamp = new Date(timestamp * 1000).toLocaleTimeString();
+  const displayTimestamp = new Date(timestamp).toLocaleTimeString();
   return (
     <div className="md:flex my-2 space-x-2">
       <div className="flex-1">{content}</div>

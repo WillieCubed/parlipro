@@ -13,7 +13,7 @@ export default function ChairDashboard() {
   const [currentMotion, setCurrentMotion] = React.useState<Motion | null>({
     mover: "",
     content: "",
-    timestamp: new Date().getMilliseconds(),
+    timestamp: Date.now(),
   });
 
   React.useEffect(() => {
