@@ -56,39 +56,41 @@ export default function ShareLinkDialog({
       {/* Just a backdrop */}
       <div className="fixed inset-0 bg-[#1C1B1F]/[66%]" aria-hidden="true" />
 
-      <div className="fixed inset-0 flex items-center justify-center p-4">
-        <Dialog.Panel className="p-8 bg-primary-1 rounded-lg">
-          <Dialog.Title className="text-2xl font-display font-bold">
-            Host a meeting
-          </Dialog.Title>
-          <Dialog.Description className="mt-2 font-medium">
-            Your meeting is ready! Share this link with the participants.
-          </Dialog.Description>
+      <div className="fixed inset-0 overflow-y-auto">
+        <div className="flex min-h-full items-center justify-center p-4">
+          <Dialog.Panel className="w-full max-w-2xl p-8 bg-primary-1 rounded-2xl">
+            <Dialog.Title className="text-2xl font-display font-bold">
+              Host a meeting
+            </Dialog.Title>
+            <Dialog.Description className="mt-2 font-medium">
+              Your meeting is ready! Share this link with the participants.
+            </Dialog.Description>
 
-          <div className="mt-4">
-            <div className="font-display font-semibold text-sm">
-              Meeting link
-            </div>
-            <div className="mt-2 p-2 border-2 border-[#796465] flex space-x-3 bg-white rounded-md">
-              <div className="p-2 flex-1 font-bold">{meetingUrl}</div>
-              <div
-                className="p-2 cursor-pointer hover:bg-slate-200 rounded-md transition ease-in-out"
-                onClick={handleCopy}
-              >
-                <CopyIcon />
+            <div className="mt-4">
+              <div className="font-display font-semibold text-sm">
+                Meeting link
+              </div>
+              <div className="mt-2 p-2 border-2 border-[#796465] flex space-x-3 bg-white rounded-md">
+                <div className="p-2 flex-1 font-bold">{meetingUrl}</div>
+                <div
+                  className="p-2 cursor-pointer hover:bg-slate-200 rounded-md transition ease-in-out"
+                  onClick={handleCopy}
+                >
+                  <CopyIcon />
+                </div>
+              </div>
+              <div className="mt-4 flex flex-row-reverse">
+                {/* TODO: Only render if actually continuing. */}
+                <button
+                  className="py-[8px] px-[12px] bg-[#796465] rounded-lg font-display font-semibold text-white hover:shadow-md focus:shadow-md transition ease-in-out"
+                  onClick={handleContinue}
+                >
+                  Continue
+                </button>
               </div>
             </div>
-            <div className="mt-4 flex flex-row-reverse">
-              {/* TODO: Only render if actually continuing. */}
-              <button
-                className="py-[8px] px-[12px] bg-[#796465] rounded-lg font-display font-semibold text-white hover:shadow-md focus:shadow-md transition ease-in-out"
-                onClick={handleContinue}
-              >
-                Continue
-              </button>
-            </div>
-          </div>
-        </Dialog.Panel>
+          </Dialog.Panel>
+        </div>
       </div>
     </Dialog>
   );

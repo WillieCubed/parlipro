@@ -18,7 +18,7 @@ export default function IconButton({
     <Link
       onClick={onClick}
       to={to}
-      className="inline-flex p-3 space-x-4 rounded-md shadow-sm hover:shadow-md focus:shadow-md bg-red-400 text-white font-semibold"
+      className="inline-flex px-3 py-2 space-x-4 rounded-xl shadow-sm hover:shadow-md focus:shadow-md bg-red-400 text-white font-semibold font-display"
       style={{
         backgroundColor: color,
       }}
