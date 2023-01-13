@@ -18,10 +18,10 @@ export default function generateMeetingLink(
   if (pathOnly) {
     baseUrl = "";
   } else {
-    if (process.env.REACT_APP_VERCEL_URL) {
-      baseUrl = process.env.REACT_APP_VERCEL_URL;
+    if (process.env.VERCEL_URL) {
+      baseUrl = "https://" + process.env.VERCEL_URL;
     } else if (process.env.REACT_APP_BASE_URL) {
-      baseUrl = process.env.REACT_APP_BASE_URL;
+      baseUrl = "https://" + process.env.REACT_APP_BASE_URL;
     } else {
       baseUrl = "http://localhost:3000";
     }
