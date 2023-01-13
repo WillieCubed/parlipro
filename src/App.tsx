@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ChairDashboard from "./modules/chair/ChairDashboard";
 import LandingPage from "./modules/common/LandingPage";
+import CompanionDisplay from "./modules/companion/components/CompanionDisplay";
 import ParticipantDisplay from "./modules/participant/components/ParticipantDisplay";
 import IndexRoute from "./routes/IndexRoute";
 import MeetingRoute from "./routes/MeetingRoute";
@@ -17,6 +18,10 @@ const ROUTES = [
       {
         path: "participant/",
         element: <ParticipantDisplay />,
+      },
+      {
+        path: "companion/",
+        element: <CompanionDisplay />,
       },
     ],
   },
