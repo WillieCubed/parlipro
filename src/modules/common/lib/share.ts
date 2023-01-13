@@ -14,21 +14,25 @@ export default function generateMeetingLink(
   type: LinkType = "participant",
   pathOnly = false
 ) {
-  // Yes, this is necessary due to how Create React App produces the PUBLIC_URL
-  // env variable at build time https://stackoverflow.com/questions/62520904/react-public-url-env-variable
-  // See this: https://stackoverflow.com/a/72493460/5742625
-  const publicUrl = process.env.PUBLIC_URL;
-  const domain = pathOnly
-    ? ""
-    : publicUrl
-    ? publicUrl
-    : "http://localhost:3000";
+  let baseUrl;
+  if (pathOnly) {
+    baseUrl = "";
+  } else {
+    if (process.env.REACT_APP_VERCEL_URL) {
+      baseUrl = process.env.REACT_APP_VERCEL_URL;
+    } else if (process.env.REACT_APP_BASE_URL) {
+      baseUrl = process.env.REACT_APP_BASE_URL;
+    } else {
+      baseUrl = "http://localhost:3000";
+    }
+  }
+
   let typePath;
   if (type === "participant") {
     typePath = "participant";
   } else if (type === "organizer") {
     typePath = "chair";
   }
-  const meetingUrl = `${domain}/m/${meetingId}/${typePath}`;
+  const meetingUrl = `${baseUrl}/m/${meetingId}/${typePath}`;
   return meetingUrl;
 }
