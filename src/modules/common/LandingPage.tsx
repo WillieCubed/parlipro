@@ -1,19 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import IconButton from "./components/IconButton";
 import ShareLinkDialog from "./components/ShareLinkDialog";
 import { ReactComponent as JoinIcon } from "../common/icons/Join.svg";
 import { ReactComponent as NewIcon } from "../common/icons/New.svg";
 import { useNavigate } from "react-router-dom";
 import generateMeetingLink from "./lib/share";
+import MeetingCreationDialog from "./components/MeetingCreationDialog";
 
 export default function LandingPage() {
-  const [isCopyLinkDialogOpen, setIsCopyLinkDialogOpen] = React.useState(false);
+  const [shouldShowNewMeetingDialog, setShouldShowNewMeetingDialog] =
+    useState(false);
   const navigate = useNavigate();
 
-  const meetingId = "test";
+  const showNewMeetingDialog = () => {
+    setShouldShowNewMeetingDialog(true);
+  };
 
   const handleClose = () => {
-    navigate(generateMeetingLink(meetingId, "organizer", true));
+    setShouldShowNewMeetingDialog(false);
+  };
+
+  const handleMeetingCreation = (
+    meetingId: string,
+    shouldStartNow: boolean
+  ) => {
+    setShouldShowNewMeetingDialog(false);
+    if (shouldStartNow) {
+      navigate(generateMeetingLink(meetingId, "organizer", true));
+    } // TODO: Probably show a toast if not
   };
 
   return (
@@ -30,7 +44,7 @@ export default function LandingPage() {
             <div>
               <IconButton
                 icon={<NewIcon />}
-                onClick={() => setIsCopyLinkDialogOpen(true)}
+                onClick={showNewMeetingDialog}
                 color="#CB8589"
               >
                 Start meeting
@@ -48,10 +62,10 @@ export default function LandingPage() {
           </section>
         </section>
       </div>
-      <ShareLinkDialog
-        meetingId={meetingId}
-        isOpen={isCopyLinkDialogOpen}
-        onClose={() => handleClose()}
+      <MeetingCreationDialog
+        isOpen={shouldShowNewMeetingDialog}
+        onMeetingCreated={handleMeetingCreation}
+        onClose={handleClose}
       />
     </>
   );
