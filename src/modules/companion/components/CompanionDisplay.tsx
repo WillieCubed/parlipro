@@ -130,15 +130,32 @@ interface CurrentMotionBlockProps {
  * A component that displays information about the current motion in a meeting.
  */
 function CurrentMotionBlock({ inSession, motion }: CurrentMotionBlockProps) {
+  const timestampText = motion
+    ? new Date(motion.timestamp).toLocaleTimeString([], {
+        timeStyle: "short",
+      })
+    : "";
+
   return (
-    <div className="p-8 max-w-5xl mx-auto rounded-2xl bg-primary-1">
+    <div className="p-8 max-w-5xl mx-auto rounded-3xl bg-primary-1 shadow-md">
       {(inSession && (
         <>
           <h1 className="font-display font-bold text-4xl">Current motion</h1>
-          <div className="mt-6">
-            <span className="font-display font-medium text-3xl">
-              {motion?.content ?? ""}
-            </span>
+          <div className="flex justify-between space-x-4 mt-6">
+            {motion ? (
+              <span className="font-display font-medium text-3xl">
+                {motion.content}
+              </span>
+            ) : (
+              <span className="font-display font-medium text-3xl italic">
+                No pending motion
+              </span>
+            )}
+            {motion && (
+              <span className="font-display font-medium text-3xl">
+                {timestampText}
+              </span>
+            )}
           </div>
         </>
       )) || <div className="font-bold text-center">Meeting not in session</div>}
@@ -184,11 +201,13 @@ export default function CompanionDisplay() {
 
   return (
     <div className="h-screen w-screen flex flex-col">
-      <main className="flex-1 flex flex-col justify-center">
-        <CurrentMotionBlock
-          inSession={isInSession}
-          motion={state?.currentMotion ?? null}
-        />
+      <main className="flex-1">
+        <div className="mt-[33vh]">
+          <CurrentMotionBlock
+            inSession={isInSession}
+            motion={state?.currentMotion ?? null}
+          />
+        </div>
       </main>
       <CompanionFooter meetingTitle={"Test Meeting"} startTime={new Date()} />
     </div>
