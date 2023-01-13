@@ -5,13 +5,18 @@ type LinkType = "participant" | "organizer";
  *
  * @param meetingId The ID of the meeting
  * @param type A setting that controls
+ * @param pathOnly If true, the generated URL will not include the site domain
+ *
  * @returns A valid URL to join the given meeting
  */
 export default function generateMeetingLink(
   meetingId: string,
-  type: LinkType = "participant"
+  type: LinkType = "participant",
+  pathOnly = false
 ) {
-  const domain = process.env.PUBLIC_URL
+  const domain = pathOnly
+    ? ""
+    : process.env.PUBLIC_URL
     ? process.env.PUBLIC_URL
     : "http://localhost:3000";
   let typePath;
