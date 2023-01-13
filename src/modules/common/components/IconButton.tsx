@@ -18,12 +18,12 @@ export default function IconButton({
     <Link
       onClick={onClick}
       to={to}
-      className="inline-block p-3 space-x-4 rounded-md shadow-sm hover:shadow-md focus:shadow-md bg-red-400 text-white"
+      className="inline-flex p-3 space-x-4 rounded-md shadow-sm hover:shadow-md focus:shadow-md bg-red-400 text-white font-semibold"
       style={{
-        color: color,
+        backgroundColor: color,
       }}
     >
-      {icon}
+      {icon && <span className="mr-4">{icon}</span>}
       {children}
     </Link>
   );
