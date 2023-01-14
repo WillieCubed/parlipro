@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { useAuth, UserContext } from "./lib/auth";
 import ChairDashboard from "./modules/chair/ChairDashboard";
 import LandingPage from "./modules/common/LandingPage";
 import CompanionDisplay from "./modules/companion/components/CompanionDisplay";
@@ -40,10 +41,14 @@ const ROUTES = [
 const router = createBrowserRouter(ROUTES);
 
 function App() {
+  const { authContext } = useAuth();
+
   return (
-    <div className="min-h-screen bg-primary-2">
-      <RouterProvider router={router} />
-    </div>
+    <UserContext.Provider value={authContext}>
+      <div className="min-h-screen bg-primary-2">
+        <RouterProvider router={router} />
+      </div>
+    </UserContext.Provider>
   );
 }
 
