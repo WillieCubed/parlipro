@@ -1,7 +1,7 @@
 import { Dialog } from "@headlessui/react";
 import { useState } from "react";
 import ShareLinkDialog from "./ShareLinkDialog";
-import { addDoc, collection, Timestamp } from "firebase/firestore";
+import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
 import { Formik, Field, FormikHelpers, Form } from "formik";
 import { db, firestore } from "../../../lib/firebase";
 import { ReactComponent as NewIcon } from "../../common/icons/New.svg";
@@ -64,27 +64,38 @@ type FormMeetingInfo = Omit<MeetingInfo, "uid">;
  * @param info Meeting data to add
  */
 async function createMeeting(info: FormMeetingInfo): Promise<MeetingInfo> {
-  const result = await addDoc(collection(firestore, "meetings"), {
+  const data = {
     ...info, // TODO: Store date string as an actual Firestore timestamp
-  });
-  const meeting: MeetingInfo = {
-    ...info,
-    uid: result.id,
   };
+  const meetingsCollection = collection(firestore, "/meetings");
+  try {
+    const result = await addDoc(meetingsCollection, data);
+    const uid = result.id;
+    await updateDoc(doc(firestore, `/meetings/${result.id}`), {
+      uid,
+    });
 
-  // TODO: Probably do this only when a meeting actually begins
-  const meetingRef = ref(db, `/meetings/${result.id}`);
-  const initialState: MeetingState = {
-    currentMotion: {
-      mover: "",
-      content: "",
-      timestamp: 0,
-    },
-    motions: [],
-  };
-  await set(meetingRef, initialState);
-  // TODO: Obviously, please do error handling
-  return meeting;
+    const meeting: MeetingInfo = {
+      ...info,
+      uid,
+    };
+
+    // TODO: Probably do this only when a meeting actually begins
+    const meetingRef = ref(db, `/meetings/${result.id}`);
+    const initialState: MeetingState = {
+      currentMotion: {
+        mover: "",
+        content: "",
+        timestamp: 0,
+      },
+      motions: [],
+    };
+    await set(meetingRef, initialState);
+    return meeting;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
 
 function NewButton({
