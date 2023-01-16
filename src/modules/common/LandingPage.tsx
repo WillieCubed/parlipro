@@ -31,17 +31,17 @@ export default function LandingPage() {
 
   return (
     <>
-      <div className="h-full py-4 px-4 xl:grid xl:grid-cols-12 gap-8">
-        <section className="rounded-[16px] px-6 py-6 xl:px-8 xl:py-8 mt-12 xl:mt-[25%] xl:col-start-2 xl:col-span-5 bg-primary-1 shadow-md">
+      <div className="h-full py-4 px-4 lg:grid lg:grid-cols-12 lg:gap-4 xl:gap-8">
+        <section className="rounded-[16px] px-6 py-6 lg:px-8 lg:py-8 mt-12 xl:mt-[25%] xl:col-start-2 lg:col-span-6 xl:col-span-5 bg-primary-1 shadow-md">
           <section>
-            <div className="text-5xl xl:mt-8 xl:text-[96px] font-display font-bold">
+            <div className="text-5xl mt-4 lg:mt-8 lg:text-[96px] font-display font-bold">
               ParliPro
             </div>
-            <div className="mt-4 text-2xl xl:text-[34px] font-display font-semibold leading-relaxed">
+            <div className="mt-4 text-2xl lg:text-[34px] font-display font-semibold leading-relaxed">
               Presiding over meetings, done simply.
             </div>
           </section>
-          <section className="mt-[48px] xl:mt-[144px] space-y-4">
+          <section className="mt-[48px] lg:mt-[144px] space-y-4">
             <div>
               <IconButton
                 icon={<NewIcon />}
@@ -62,8 +62,8 @@ export default function LandingPage() {
             </div>
           </section>
         </section>
-        <section className="p-6 xl:p-8 mt-4 xl:mt-[25%] xl:col-span-5">
-          <div className="xl:mt-8 space-y-2">
+        <section className="p-6 lg:p-8 mt-4 xl:mt-[25%] lg:col-span-6 xl:col-span-5">
+          <div className="lg:mt-8 space-y-2">
             <h1 className="font-display font-semibold text-3xl">
               About ParliPro
             </h1>
